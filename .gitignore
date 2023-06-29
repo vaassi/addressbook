@@ -1,0 +1,6 @@
+target/
+assets/
+static/
+data.sqlite
+.env
+.idea/

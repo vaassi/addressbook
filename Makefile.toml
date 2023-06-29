@@ -1,0 +1,11 @@
+[env]
+CARGO_MAKE_EXTEND_WORKSPACE_MAKEFILE = true
+
+[tasks.build-backend]
+description = "build axum backend for release"
+command = "cargo"
+args = ["build", "--release"]
+
+[tasks.default]
+clear = true
+dependencies = ["build-backend"]
