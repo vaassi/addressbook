@@ -1,12 +1,14 @@
 use stylist::style;
 use wasm_bindgen_futures::spawn_local;
 use yew::prelude::*;
+use yew_router::prelude::*;
 use yewdux::prelude::*;
 
 use crate::components::DepartmentItem;
+use crate::router::Route;
 use crate::services::api::get_departments;
-use crate::store::reducers::{department_reducer, page_reducer};
 use crate::store::LocalStore;
+use crate::store::reducers::{department_reducer, page_reducer};
 
 #[derive(PartialEq, Properties)]
 pub struct DepartmentListProps {}
@@ -15,6 +17,7 @@ pub struct DepartmentListProps {}
 pub fn DepartmentList(_props: &DepartmentListProps) -> Html {
     let department_state = use_state(Vec::new);
     let (store, dispatch) = use_store::<LocalStore>();
+    let navigator = use_navigator().unwrap();
 
     let onclick = {
         let dispatch = dispatch.clone();
@@ -22,6 +25,7 @@ pub fn DepartmentList(_props: &DepartmentListProps) -> Html {
         Callback::from(move |id| {
             department_reducer(dispatch.clone(), id);
             page_reducer(dispatch.clone(), 0);
+            navigator.push(&Route::Home);
         })
     };
 
@@ -44,14 +48,14 @@ pub fn DepartmentList(_props: &DepartmentListProps) -> Html {
             font-weight: bold;
         "#
     )
-    .unwrap();
+        .unwrap();
 
     let ul_style = style!(
         r#"
             margin-bottom: 20px;
         "#
     )
-    .unwrap();
+        .unwrap();
 
     html! {
         <>

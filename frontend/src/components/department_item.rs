@@ -47,8 +47,8 @@ fn get_style() -> stylist::Result<Style> {
         r#"
             a {
                 color: var(--bs-gray);
-                font-weight: 400;
-                font-size: 13px;
+                font-weight: 500;
+                font-size: 14px;
                 border-radius: 0 !important;
                 margin-right: 10px;
                 margin-left: 10px;

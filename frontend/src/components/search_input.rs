@@ -4,7 +4,7 @@ use yew::prelude::*;
 
 #[derive(PartialEq, Properties)]
 pub struct SearchInputProps {
-    pub value: AttrValue,
+    pub input_ref: NodeRef,
     pub placeholder: AttrValue,
     pub onchange: Callback<String>,
 }
@@ -25,6 +25,6 @@ pub fn SearchInput(props: &SearchInputProps) -> Html {
     };
 
     html! {
-        <input class="form-control" type="text" value={&props.value} placeholder={&props.placeholder} {onchange} />
+        <input ref={&props.input_ref} class="form-control typeahead" type="text" placeholder={&props.placeholder} {onchange} />
     }
 }

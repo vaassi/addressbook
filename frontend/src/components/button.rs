@@ -12,6 +12,7 @@ pub struct ButtonProps {
 
 #[function_component]
 pub fn Button(props: &ButtonProps) -> Html {
+
     let onclick = {
         let cb = props.onclick.clone();
 

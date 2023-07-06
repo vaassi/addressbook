@@ -1,8 +1,15 @@
+[tasks.clean-frontend]
+description = "clean yew frontend for release"
+install_crate = "trunk"
+command = "trunk"
+args = ["clean", "--cargo", "--tools", "--dist", "../static"]
+
 [tasks.build-frontend]
 description = "build yew frontend for release"
 install_crate = "trunk"
 command = "trunk"
 args = ["build", "--release", "--dist", "../static"]
+dependencies = ["clean-frontend"]
 
 [tasks.default]
 dependencies = ["build-frontend"]

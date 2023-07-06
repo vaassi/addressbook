@@ -36,8 +36,8 @@ async fn main() -> Result<()> {
 
     let routes = Router::new()
         .nest("/api", routes_api)
-        .layer(CorsLayer::permissive())
-        .fallback_service(routes_static());
+        .fallback_service(routes_static())
+        .layer(CorsLayer::permissive());
 
     let addr = SocketAddr::from_str(&server_url).unwrap();
 

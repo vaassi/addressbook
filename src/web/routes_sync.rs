@@ -1,8 +1,8 @@
-use std::env;
+use std::{env, fs};
 
+use axum::{Json, Router};
 use axum::extract::State;
 use axum::routing::get;
-use axum::{Json, Router};
 use chrono::{NaiveDate, Utc};
 use ldap3::{LdapConnAsync, Scope, SearchEntry};
 use sea_orm::{ActiveModelTrait, EntityTrait, ModelTrait, Set};
@@ -12,8 +12,8 @@ use entity::{
     city, company, contact, country, department, job_title, postal_code, state, street_address,
 };
 
-use crate::error::Result;
 use crate::AppState;
+use crate::error::Result;
 
 pub fn routes_sync(state: AppState) -> Router {
     Router::new()
@@ -286,8 +286,12 @@ async fn ldap_sync(State(state): State<AppState>) -> Result<Json<Value>> {
         }
     }
 
+    // vec for data.json autocomplete
+    let mut names = vec![];
+
     for ldap_contact in ldap_contacts {
         let name = get_attr_value(&ldap_contact, "name").unwrap();
+        names.push(name.clone());
         let dn = ldap_contact.dn.to_owned();
         let employee_number = get_attr_value(&ldap_contact, "employeeNumber");
         let mail = get_attr_value(&ldap_contact, "mail");
@@ -317,8 +321,7 @@ async fn ldap_sync(State(state): State<AppState>) -> Result<Json<Value>> {
         let postal_code_id = get_attr_id(&current_postal_codes, &ldap_contact, "postalCode");
         let state_id = get_attr_id(&current_states, &ldap_contact, "st");
         let city_id = get_attr_id(&current_cities, &ldap_contact, "l");
-        let street_address_id =
-            get_attr_id(&current_street_addresses, &ldap_contact, "streetAddress");
+        let street_address_id = get_attr_id(&current_street_addresses, &ldap_contact, "streetAddress");
 
         if let Some(contact) = db_contacts.iter().find(|c| c.dn == ldap_contact.dn) {
             // update contact
@@ -499,6 +502,10 @@ async fn ldap_sync(State(state): State<AppState>) -> Result<Json<Value>> {
             println!("Found new contact: `{}`", item.name);
         }
     }
+
+    // save data.json
+    fs::write("./static/data.json", serde_json::to_string(&names)?)
+        .expect("can't write to static/data.json");
 
     Ok(Json(json!({"status": "success"})))
 }

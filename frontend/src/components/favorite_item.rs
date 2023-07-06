@@ -42,7 +42,7 @@ pub fn FavoriteItem(props: &FavoriteItemProps) -> Html {
                         {&props.contact.name}
                         <i class="bi bi-x float-end" {onclick}></i>
                     </h5>
-                    <small class="text-body-secondary">{&props.contact.get_subtitle()}</small>
+                    <small class="text-body-secondary text-break">{&props.contact.get_subtitle()}</small>
                 </div>
             </div>
         </Link<Route>>

@@ -1,4 +1,4 @@
-use stylist::css;
+use stylist::{css, style};
 use stylist::yew::Global;
 use yew::prelude::*;
 use yew_router::prelude::*;
@@ -27,6 +27,15 @@ pub fn app() -> Html {
         "#
     );
 
+    let style_h3 = style!(
+        r#"
+            a {
+                text-decoration: none;
+                color: var(--bs-body-color);
+            }
+        "#
+    ).unwrap();
+
     html! {
         <BrowserRouter>
             <Global css={style} />
@@ -37,7 +46,10 @@ pub fn app() -> Html {
                         <FavoriteList />
                     </div>
                     <div class="col-md-9">
-                        <h3 class="mb-3"><i class="bi bi-journal-text pe-1"></i>{"AddressBook"}</h3>
+                        <h3 class={classes!("mb-3", style_h3.get_class_name().to_string())}>
+                            <i class="bi bi-journal-text pe-1"></i>
+                            <Link<Route> to={Route::Home}>{"AddressBook"}</Link<Route>>
+                        </h3>
                         <SearchBar />
                         <Switch<Route> render={switch} />
                     </div>

@@ -48,7 +48,7 @@ RUN chown -R ${USERNAME}:${USERNAME} ${APP}
 USER ${USERNAME}
 WORKDIR ${APP}
 
-EXPOSE 8080
+EXPOSE 3000
 
 # set the startup command to run your binary
 CMD ["./addressbook"]

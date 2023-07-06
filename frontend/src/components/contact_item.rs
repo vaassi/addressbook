@@ -42,10 +42,10 @@ pub fn ContactItem(props: &ContactItemProps) -> Html {
                         <i class="bi bi-balloon-fill me-1"></i>
                         }
                         {&props.contact.name}
-                        <small>{props.contact.get_subtitle()}</small>
+                        <small class="ps-2">{props.contact.get_location()}</small>
                         <i class={classes!("bi", "bi-star", "float-end", props.favorite.then_some("favorite"))} {onclick}></i>
                     </h4>
-                    <li>{props.contact.get_location()}</li>
+                    <li class="text-break">{props.contact.get_subtitle()}</li>
                     <ul class="list-unstyled">
                         <li><i class="bi bi-telephone"></i>{props.contact.telephone_number.clone().unwrap_or_default()}</li>
                         <li><i class="bi bi-phone"></i>{props.contact.mobile.clone().unwrap_or_default()}</li>
@@ -79,7 +79,7 @@ fn get_style() -> stylist::Result<Style> {
 
             h4 {
                 font-size: 16px;
-                font-weight: 500;
+                font-weight: 600;
             }
 
             small {

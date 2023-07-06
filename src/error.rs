@@ -19,6 +19,8 @@ pub enum Error {
     ParseErr(#[from] ParseError),
     #[error("contact not found")]
     ContactNotFound,
+    #[error("json error")]
+    SedeJsonErr(#[from] serde_json::Error),
 }
 
 impl IntoResponse for Error {

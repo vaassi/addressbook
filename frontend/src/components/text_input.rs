@@ -30,7 +30,7 @@ pub fn TextInput(props: &TextInputProps) -> Html {
 
     html! {
         <>
-            <label class="small mb-1" for={id.clone()}>{&props.label}</label>
+            <label class="small mb-1 fw-bold" for={id.clone()}>{&props.label}</label>
             <input class={classes!("form-control", style.get_class_name().to_string())} type="text" {id} value={&props.value} readonly={true} />
         </>
     }
