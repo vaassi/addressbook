@@ -1,5 +1,5 @@
-use stylist::{css, style};
 use stylist::yew::Global;
+use stylist::{css, style};
 use yew::prelude::*;
 use yew_router::prelude::*;
 
@@ -34,7 +34,8 @@ pub fn app() -> Html {
                 color: var(--bs-body-color);
             }
         "#
-    ).unwrap();
+    )
+    .unwrap();
 
     html! {
         <BrowserRouter>

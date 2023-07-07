@@ -7,8 +7,8 @@ use yewdux::prelude::*;
 use crate::components::DepartmentItem;
 use crate::router::Route;
 use crate::services::api::get_departments;
-use crate::store::LocalStore;
 use crate::store::reducers::{department_reducer, page_reducer};
+use crate::store::LocalStore;
 
 #[derive(PartialEq, Properties)]
 pub struct DepartmentListProps {}
@@ -48,14 +48,14 @@ pub fn DepartmentList(_props: &DepartmentListProps) -> Html {
             font-weight: bold;
         "#
     )
-        .unwrap();
+    .unwrap();
 
     let ul_style = style!(
         r#"
             margin-bottom: 20px;
         "#
     )
-        .unwrap();
+    .unwrap();
 
     html! {
         <>
