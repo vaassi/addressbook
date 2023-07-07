@@ -72,6 +72,9 @@ this url must be added to cron with schedule you want
 
 ### For Docker users
    ```sh
+   docker build -t addressbook:0.1.0 .
+   ```
+   ```sh
     docker run -d --name addressbook --env-file=.env \
     -p 3000:3000 \
     -v ./data/data.sqlite:/opt/app/data.sqlite \
