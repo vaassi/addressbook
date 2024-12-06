@@ -1,8 +1,8 @@
-FROM rust:1.70 as build
+FROM rust:1.83 AS build
 
 # create a new empty shell project
 RUN USER=root cargo new --bin addressbook
-WORKDIR ./addressbook
+WORKDIR /addressbook
 
 RUN USER=root cargo new --bin frontend
 
@@ -24,7 +24,7 @@ RUN rm ./target/release/deps/addressbook*
 RUN cargo build --release
 
 # our final base
-FROM debian:bullseye-slim
+FROM debian:bookworm-slim
 ARG APP=/opt/app
 ARG USERNAME=appuser
 ARG USER_UID=1000
@@ -33,7 +33,7 @@ ARG USER_GID=${USER_UID}
 RUN groupadd -g ${USER_GID} ${USERNAME} \
     && useradd -u ${USER_UID} -g ${USER_GID} ${USERNAME} -m -c "Docker image user" \
     && apt-get update \
-    && apt-get install -y ca-certificates tzdata \
+    && apt-get install -y ca-certificates tzdata openssl \
     && rm -rf /var/lib/apt/lists/* \
     && mkdir -p ${APP}
 
