@@ -47,12 +47,26 @@ To get a local copy up and running follow these simple steps.
   ```
 * Install WebAssembly target
   ```sh
-    rustup target add wasm32-unknown-unknown
+  rustup target add wasm32-unknown-unknown
+  ```
+* Fix for OpenSSL trunk (windows)
+  ```sh
+  mkdir \Tools
+  cd \Tools
+  git clone https://github.com/Microsoft/vcpkg.git
+  cd vcpkg
+  .\bootstrap-vcpkg.bat
+  .\vcpkg.exe install openssl:x64-windows-static
+
+  $env:OPENSSL_DIR = 'C:\Tools\vcpkg\installed\x64-windows-static'
+  $env:OPENSSL_STATIC = 'Yes'
+  [System.Environment]::SetEnvironmentVariable('OPENSSL_DIR', $env:OPENSSL_DIR, [System.EnvironmentVariableTarget]::User)
+  [System.Environment]::SetEnvironmentVariable('OPENSSL_STATIC', $env:OPENSSL_STATIC, [System.EnvironmentVariableTarget]::User)
   ```
 * Install Trunk, Make
   ```sh
-    cargo install trunk
-    cargo install cargo-make
+  cargo install trunk
+  cargo install cargo-make
   ```
 
 ### Installation
@@ -71,16 +85,16 @@ To get a local copy up and running follow these simple steps.
 this url must be added to cron with schedule you want
 
 ### For Docker users
-   ```sh
-   docker build -t addressbook:0.1.0 .
-   ```
-   ```sh
-    docker run -d --name addressbook --env-file=.env \
-    -p 3000:3000 \
-    -v ./data/data.sqlite:/opt/app/data.sqlite \
-    -v ./data/assets:/opt/app/static/assets \
-    vaassi/addressbook:0.1.0
-   ```
+```sh
+docker build -t addressbook:0.1.0 .
+```
+```sh
+docker run -d --name addressbook --env-file=.env \
+  -p 3000:3000 \
+  -v ./data/data.sqlite:/opt/app/data.sqlite \
+  -v ./data/assets:/opt/app/static/assets \
+  vaassi/addressbook:0.1.0
+```
 
 <!-- CONTRIBUTING -->
 ## Contributing
