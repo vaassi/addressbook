@@ -1,4 +1,4 @@
-pub use routes_contact::{routes_contact, Contact};
+pub use routes_contact::routes_contact;
 pub use routes_department::routes_department;
 pub use routes_static::routes_static;
 pub use routes_sync::routes_sync;

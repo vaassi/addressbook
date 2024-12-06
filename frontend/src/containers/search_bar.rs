@@ -65,7 +65,7 @@ pub fn SearchBar(_props: &SearchBarProps) -> Html {
 fn get_style() -> stylist::Result<Style> {
     style!(
         r#"
-            border-radius: 0;
+            border-radius: 10px;
             border: none;
             margin-bottom: 20px;
 

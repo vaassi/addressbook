@@ -15,8 +15,6 @@ pub fn DetailsPicture(props: &DetailsPictureProps) -> Html {
             }
 
             &.card {
-                border-top-left-radius: 0;
-                border-top-right-radius: 0;
                 border: none;
             }
         "#

@@ -1,6 +1,4 @@
 use std::env;
-use std::net::SocketAddr;
-use std::str::FromStr;
 
 use axum::Router;
 use sea_orm::DbConn;
@@ -39,11 +37,10 @@ async fn main() -> Result<()> {
         .fallback_service(routes_static())
         .layer(CorsLayer::permissive());
 
-    let addr = SocketAddr::from_str(&server_url).unwrap();
-
-    println!("Listening on http://{addr}");
-    axum::Server::bind(&addr)
-        .serve(routes.into_make_service())
+    println!("Listening on http://{server_url}");
+    
+    let listener = tokio::net::TcpListener::bind(server_url).await.unwrap();
+    axum::serve(listener, routes.into_make_service())
         .await
         .unwrap();
 

@@ -63,14 +63,10 @@ fn get_style() -> stylist::Result<Style> {
             border: none;
             margin-top: 10px;
             font-size: 14px;
+            border-radius: 10px;
 
             :hover,  {
                 background-color: var(--bs-tertiary-bg);
-            }
-
-            :first-child {
-                border-top-left-radius: 0;
-                border-top-right-radius: 0;
             }
 
             img {

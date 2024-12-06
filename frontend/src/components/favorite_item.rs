@@ -53,7 +53,6 @@ fn get_style() -> stylist::Result<Style> {
     style!(
         r#"
             transition: all 0.2s ease-out 0s;
-            border-radius: 3px;
             margin: 0;
             border: none;
             border-radius: 0;

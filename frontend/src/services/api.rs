@@ -29,7 +29,6 @@ pub async fn get_departments() -> Result<Vec<Department>> {
 #[derive(Deserialize)]
 pub struct ContactListResponse {
     pub total: u32,
-    pub page_size: u32,
     pub page: u32,
     pub data: Vec<Contact>,
 }

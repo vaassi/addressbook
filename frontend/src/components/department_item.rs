@@ -49,7 +49,7 @@ fn get_style() -> stylist::Result<Style> {
                 color: var(--bs-gray);
                 font-weight: 500;
                 font-size: 14px;
-                border-radius: 0 !important;
+                border-radius: 5px !important;
                 margin-right: 10px;
                 margin-left: 10px;
                 padding-right: 0;

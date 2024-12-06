@@ -24,8 +24,6 @@ pub fn DetailsInfo(props: &DetailsInfoProps) -> Html {
     let style = style!(
         r#"
             &.card {
-                border-top-left-radius: 0;
-                border-top-right-radius: 0;
                 border: none;
             }
         "#

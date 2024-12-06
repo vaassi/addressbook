@@ -4,5 +4,4 @@ static/
 !frontend/static/
 data.sqlite
 .env
-.idea/
 dist/

@@ -61,7 +61,7 @@ pub fn ContactDetails(props: &ContactDetailsProps) -> Html {
             button {
                 background-color: #2ECC71 !important;
                 border: none;
-                border-radius: 3px;
+                border-radius: 5px;
             }
 
             button:hover {
