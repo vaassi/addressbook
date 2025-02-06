@@ -28,7 +28,7 @@ pub fn FavoriteList(_props: &FavoriteListProps) -> Html {
 
     html! {
         <>
-            <h5 class={style}><i class="bi bi-star pe-1"></i>{"My Favorites"}</h5>
+            <h5 class={style}><i class="bi bi-star pe-1"></i>{"Избранное"}</h5>
             <div class="list-group mb-3">
                 {store.favorites.iter().map(|contact| {
                     html! { <FavoriteItem contact={contact.clone()} onclick={onclick.clone()} /> }

@@ -54,37 +54,10 @@ impl Contact {
         } else {
             String::new()
         }
-        // if let Some(company) = &self.company {
-        //     if let Some(job_title) = &self.job_title {
-        //         format!("{} at {}", job_title, company)
-        //     } else {
-        //         company.to_string()
-        //     }
-        // } else if let Some(job_title) = &self.job_title {
-        //     job_title.to_string()
-        // } else {
-        //     String::new()
-        // }
     }
 
     pub fn get_location(&self) -> String {
-        format!(
-            "{}, {}, {}",
-            self.country.clone().unwrap_or_default(),
-            self.state.clone().unwrap_or_default(),
-            self.city.clone().unwrap_or_default(),
-        )
-    }
-
-    pub fn get_location_full(&self) -> String {
-        format!(
-            "{}, {}, {}, {}, {}",
-            self.country.clone().unwrap_or_default(),
-            self.postal_code.clone().unwrap_or_default(),
-            self.state.clone().unwrap_or_default(),
-            self.city.clone().unwrap_or_default(),
-            self.street_address.clone().unwrap_or_default()
-        )
+        String::new()
     }
 
     pub fn is_birthday_today(&self) -> bool {

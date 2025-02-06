@@ -20,8 +20,8 @@ pub fn NotFound(_props: &NotFoundProps) -> Html {
          <div class={classes!("row", "justify-content-center", style.get_class_name().to_string())}>
             <div class="col-md-12 text-center">
                 <span class="display-1 d-block">{"404"}</span>
-                <div class="mb-4 lead">{"The page you are looking for was not found."}</div>
-                <Link<Route> to={Route::Home} classes="btn btn-link">{"Back to Home"}</Link<Route>>
+                <div class="mb-4 lead">{"Запрошенная страница не найдена."}</div>
+                <Link<Route> to={Route::Home} classes="btn btn-link">{"Вернуться на главную"}</Link<Route>>
             </div>
         </div>
     }

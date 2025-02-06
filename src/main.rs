@@ -6,7 +6,7 @@ use tower_http::cors::CorsLayer;
 
 use crate::db::establish_connection;
 use crate::error::Result;
-use crate::web::{routes_contact, routes_department, routes_static, routes_sync};
+use crate::web::{routes_contact, routes_department, routes_static, routes_sync, routes_data};
 
 mod db;
 mod error;
@@ -28,6 +28,7 @@ async fn main() -> Result<()> {
     let state = AppState { conn };
 
     let routes_api = Router::new()
+        .merge(routes_data())
         .merge(routes_department(state.clone()))
         .merge(routes_contact(state.clone()))
         .merge(routes_sync(state));

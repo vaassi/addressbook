@@ -54,8 +54,7 @@ pub fn SearchBar(_props: &SearchBarProps) -> Html {
     html! {
         <div class={classes!("card", "bg-light", style.get_class_name().to_string())}>
             <div class="card-body input-group">
-                <SearchInput {input_ref} placeholder={"Search people"} {onchange} />
-                // <Button><i class="bi bi-x-lg"></i></Button>
+                <SearchInput {input_ref} placeholder={"Найти сотрудника"} {onchange} />
                 <Button onclick={onclick}><i class="bi bi-search"></i></Button>
             </div>
         </div>
@@ -70,7 +69,7 @@ fn get_style() -> stylist::Result<Style> {
             margin-bottom: 20px;
 
             button {
-                background-color: #2ECC71 !important;
+                background-color: #317C4E !important;
                 border: none;
             }
 
@@ -115,12 +114,12 @@ fn get_style() -> stylist::Result<Style> {
             .tt-suggestion:hover {
               cursor: pointer;
               color: #fff;
-              background-color: #2ECC71;
+              background-color: #317C4E;
             }
 
             .tt-suggestion.tt-cursor {
               color: #fff;
-              background-color: #2ECC71;
+              background-color: #317C4E;
             }
 
             .tt-suggestion p {

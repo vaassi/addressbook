@@ -31,8 +31,8 @@ pub fn PageItem(props: &PageItemProps) -> Html {
             }
 
             &.active {
-                background-color: #2ECC71;
-                border-color: #2ECC71;
+                background-color: #317C4E;
+                border-color: #317C4E;
             }
 
             &.active:hover {

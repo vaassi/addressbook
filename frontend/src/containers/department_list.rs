@@ -59,7 +59,7 @@ pub fn DepartmentList(_props: &DepartmentListProps) -> Html {
 
     html! {
         <>
-            <h5 class={h5_style}><i class="bi bi-journal-bookmark pe-1"></i>{"Departments"}</h5>
+            <h5 class={h5_style}><i class="bi bi-journal-bookmark pe-1"></i>{"Отделы"}</h5>
             <ul class={classes!("nav", "nav-pills", "flex-column", ul_style.get_class_name().to_string())}>
                 { (*department_state).iter().map(|department| {
                     let active = store.dep_id == department.id;

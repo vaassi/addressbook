@@ -58,7 +58,7 @@ async fn get_departments(State(state): State<AppState>) -> Result<Json<Vec<Depar
         0,
         Department {
             id: 0,
-            name: "All Departments".to_owned(),
+            name: "Все отделы".to_owned(),
             count: total,
         },
     );

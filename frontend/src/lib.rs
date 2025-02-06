@@ -5,6 +5,7 @@ use yew_router::prelude::*;
 
 use crate::containers::{DepartmentList, FavoriteList, SearchBar};
 use crate::router::{switch, Route};
+use crate::services::api::API_ROOT;
 
 mod components;
 mod containers;
@@ -21,8 +22,8 @@ pub fn app() -> Html {
             body {
                 margin-top: 20px;
                 margin-bottom: 20px;
-                background: #eee;
-                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+                background: url(/images/bg-bottom.webp) -100% 25% repeat, #eee;
+                font-family: 'Myriad Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
             }
         "#
     );
@@ -40,22 +41,22 @@ pub fn app() -> Html {
     html! {
         <BrowserRouter>
             <Global css={style} />
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-3">
-                        <DepartmentList />
-                        <FavoriteList />
-                    </div>
-                    <div class="col-md-9">
-                        <h3 class={classes!("mb-3", style_h3.get_class_name().to_string())}>
-                            <i class="bi bi-journal-text pe-1"></i>
-                            <Link<Route> to={Route::Home}>{"AddressBook"}</Link<Route>>
-                        </h3>
-                        <SearchBar />
-                        <Switch<Route> render={switch} />
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <DepartmentList />
+                            <FavoriteList />
+                        </div>
+                        <div class="col-md-9">
+                            <h3 class={classes!("mb-3", style_h3.get_class_name().to_string())}>
+                                <img src={format!("{}/images/logo.png", API_ROOT)} alt={"photo"} />
+                                <Link<Route> to={Route::Home}>{"Адресная Книга"}</Link<Route>>
+                            </h3>
+                            <SearchBar />
+                            <Switch<Route> render={switch} />
+                        </div>
                     </div>
                 </div>
-            </div>
         </BrowserRouter>
     }
 }

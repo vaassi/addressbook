@@ -23,7 +23,7 @@ pub fn DetailsPicture(props: &DetailsPictureProps) -> Html {
 
     html! {
         <div class={classes!("card", "mb-4", "mb-xl-0", style.get_class_name().to_string())}>
-            <div class="card-header"><i class="bi bi-person-bounding-box pe-1"></i>{"Picture"}</div>
+            <div class="card-header"><i class="bi bi-person-bounding-box pe-1"></i>{"Фото"}</div>
             <div class="card-body text-center">
                 <img class="rounded-circle mb-2" src={&props.image} alt="photo" />
             </div>

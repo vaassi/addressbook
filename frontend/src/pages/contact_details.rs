@@ -59,7 +59,7 @@ pub fn ContactDetails(props: &ContactDetailsProps) -> Html {
     let style = style!(
         r#"
             button {
-                background-color: #2ECC71 !important;
+                background-color: #317C4E !important;
                 border: none;
                 border-radius: 5px;
             }
@@ -73,7 +73,7 @@ pub fn ContactDetails(props: &ContactDetailsProps) -> Html {
 
     html! {
         <>
-            <h3 class={h3_style}>{"Contact Details"}</h3>
+            <h3 class={h3_style}>{"Детали Контакта"}</h3>
             <div class="row">
                 <div class="col-xl-4">
                     <DetailsPicture image={(*contact_state).get_image()} />
@@ -83,7 +83,7 @@ pub fn ContactDetails(props: &ContactDetailsProps) -> Html {
                 </div>
             </div>
             <div class={classes!("float-end", style.get_class_name().to_string())}>
-                <Button title="Back" {onclick}  />
+                <Button title="Назад" {onclick}  />
             </div>
         </>
     }

@@ -26,7 +26,7 @@ pub fn ContactList(props: &ContactListProps) -> Html {
                 html! { <ContactItem contact={contact.clone()} {favorite} onclick={onclick.clone()} /> }
             }).collect::<Html>()}
         } else {
-            <p class="text-center mt-5"><i class="bi bi-emoji-frown"></i>{" can't find any contacts..."}</p>
+            <p class="text-center mt-5"><i class="bi bi-emoji-frown"></i>{" сотрудники не найдены..."}</p>
         }
         </div>
     }

@@ -5,3 +5,4 @@ static/
 data.sqlite
 .env
 dist/
+.vscode/

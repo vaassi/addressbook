@@ -47,7 +47,7 @@ pub fn Home(_props: &HomeProps) -> Html {
         <>
             <div class="row">
                 <div class="col">
-                    <h3 class="pt-2">{"All Contacts"}</h3>
+                    <h3 class="pt-2">{"Сотрудники"}</h3>
                 </div>
                 <div class="col">
                     <PageList total={*total_state} />

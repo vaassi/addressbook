@@ -24,7 +24,7 @@ $(function () {
             datumTokenizer: Bloodhound.tokenizers.whitespace,
             queryTokenizer: Bloodhound.tokenizers.whitespace,
             prefetch: {
-                url: '../data.json',
+                url: '../api/data',
                 cache: false
             }
         });

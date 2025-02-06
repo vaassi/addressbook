@@ -73,7 +73,7 @@ fn get_style() -> stylist::Result<Style> {
 
             &.active a, &.active a:hover, &.active a:focus {
                 color: #fff !important;
-                background-color: #2ECC71 !important;
+                background-color: #317C4E !important;
             }
         "#
     )
