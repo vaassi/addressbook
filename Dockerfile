@@ -1,4 +1,4 @@
-FROM rust:1.83 AS build
+FROM rust:1.85 AS build
 
 # create a new empty shell project
 RUN USER=root cargo new --bin addressbook
@@ -26,12 +26,12 @@ RUN cargo build --release
 # our final base
 FROM debian:bookworm-slim
 ARG APP=/opt/app
-ARG USERNAME=appuser
+ARG USERNAME=rust
 ARG USER_UID=1000
 ARG USER_GID=${USER_UID}
 
 RUN groupadd -g ${USER_GID} ${USERNAME} \
-    && useradd -u ${USER_UID} -g ${USER_GID} ${USERNAME} -m -c "Docker image user" \
+    && useradd -u ${USER_UID} -g ${USER_GID} ${USERNAME} -m -c "docker app user" \
     && apt-get update \
     && apt-get install -y ca-certificates tzdata openssl \
     && rm -rf /var/lib/apt/lists/* \

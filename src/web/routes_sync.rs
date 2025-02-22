@@ -508,7 +508,7 @@ async fn ldap_sync(State(state): State<AppState>) -> Result<Json<Value>> {
     }
 
     // save data.json
-    fs::write("./static/data.json", serde_json::to_string(&names)?)
+    fs::write("./data.json", serde_json::to_string(&names)?)
     .expect("can't write to static/data.json");
 
     Ok(Json(json!({"status": "success"})))

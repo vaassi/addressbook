@@ -6,7 +6,9 @@ use tower_http::cors::CorsLayer;
 
 use crate::db::establish_connection;
 use crate::error::Result;
-use crate::web::{routes_contact, routes_department, routes_static, routes_sync, routes_data};
+use crate::web::{
+    routes_contact, routes_data, routes_department, routes_query, routes_static, routes_sync,
+};
 
 mod db;
 mod error;
@@ -14,6 +16,9 @@ mod web;
 
 #[tokio::main]
 async fn main() -> Result<()> {
+    std::env::set_var("RUST_LOG", "debug");
+    tracing_subscriber::fmt().init();
+
     // get env vars
     dotenvy::dotenv().ok();
 
@@ -29,6 +34,7 @@ async fn main() -> Result<()> {
 
     let routes_api = Router::new()
         .merge(routes_data())
+        .merge(routes_query(state.clone()))
         .merge(routes_department(state.clone()))
         .merge(routes_contact(state.clone()))
         .merge(routes_sync(state));
@@ -39,7 +45,7 @@ async fn main() -> Result<()> {
         .layer(CorsLayer::permissive());
 
     println!("Listening on http://{server_url}");
-    
+
     let listener = tokio::net::TcpListener::bind(server_url).await.unwrap();
     axum::serve(listener, routes.into_make_service())
         .await

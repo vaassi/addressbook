@@ -28,6 +28,7 @@ async fn get_departments(State(state): State<AppState>) -> Result<Json<Vec<Depar
         .column(contact::Column::DepartmentId)
         .column_as(contact::Column::DepartmentId.count(), "count")
         .group_by(contact::Column::DepartmentId)
+        .having(contact::Column::DepartmentId.is_not_null())
         .into_tuple()
         .all(&state.conn)
         .await?;

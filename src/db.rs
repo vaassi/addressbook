@@ -1,8 +1,8 @@
 use std::env;
 
-use sea_orm::{Database, DbConn, DbErr};
+use sea_orm::{Database, DbBackend, DbConn, DbErr, Statement};
 
-use migration::{Migrator, MigratorTrait};
+use migration::{ConnectionTrait, Migrator, MigratorTrait};
 
 pub async fn establish_connection() -> Result<DbConn, DbErr> {
     // get env vars
@@ -12,6 +12,13 @@ pub async fn establish_connection() -> Result<DbConn, DbErr> {
     let conn = Database::connect(db_url)
         .await
         .expect("Database connection failed");
+
+    // disable case sensetive
+    conn.query_one(Statement::from_string(
+        DbBackend::Sqlite,
+        r#"PRAGMA case_sensitive_like=OFF"#,
+    ))
+    .await?;
 
     // apply migrations
     Migrator::up(&conn, None).await?;
