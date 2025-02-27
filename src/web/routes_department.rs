@@ -50,9 +50,10 @@ async fn get_departments(State(state): State<AppState>) -> Result<Json<Vec<Depar
             count: department_count
                 .iter()
                 .find(|&&d| d.0 == m.id as i64)
-                .unwrap()
+                .unwrap_or(&(m.id as i64, 0))
                 .1,
         })
+        .filter(|f| f.count != 0)
         .collect::<Vec<Department>>();
 
     departments.insert(
