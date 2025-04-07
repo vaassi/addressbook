@@ -15,7 +15,7 @@ pub fn routes_department(state: AppState) -> Router {
         .with_state(state)
 }
 
-#[derive(Serialize)]
+#[derive(Serialize, PartialEq, Eq, PartialOrd, Ord)]
 struct Department {
     id: i32,
     name: String,
@@ -56,6 +56,7 @@ async fn get_departments(State(state): State<AppState>) -> Result<Json<Vec<Depar
         .filter(|f| f.count != 0)
         .collect::<Vec<Department>>();
 
+    departments.sort_by(|a, b| a.name.cmp(&b.name));
     departments.insert(
         0,
         Department {

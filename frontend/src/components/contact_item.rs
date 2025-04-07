@@ -65,7 +65,7 @@ fn get_style() -> stylist::Result<Style> {
             font-size: 14px;
             border-radius: 10px;
 
-            :hover,  {
+            :hover {
                 background-color: var(--bs-tertiary-bg);
             }
 

@@ -28,10 +28,19 @@ pub fn TextInput(props: &TextInputProps) -> Html {
     )
     .unwrap();
 
-    html! {
-        <>
-            <label class="small mb-1 fw-bold" for={id.clone()}>{&props.label}</label>
-            <input class={classes!("form-control", style.get_class_name().to_string())} type="text" {id} value={&props.value} readonly={true} />
-        </>
+    if props.label == "Email" {
+        html! {
+            <>
+                <label class="small mb-1 fw-bold" for={id.clone()}>{&props.label}</label>
+                <a class={classes!("form-control", style.get_class_name().to_string())} {id} href={format!("mailto:{}", &props.value)}>{&props.value}</a>
+            </>
+        }
+    } else {
+        html! {
+            <>
+                <label class="small mb-1 fw-bold" for={id.clone()}>{&props.label}</label>
+                <input class={classes!("form-control", style.get_class_name().to_string())} type="text" {id} value={&props.value} readonly={true} />
+            </>
+        }
     }
 }
